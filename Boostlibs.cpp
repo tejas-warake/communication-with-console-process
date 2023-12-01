@@ -1,0 +1,1 @@
+// Platfor Independent (Works on all OS).
