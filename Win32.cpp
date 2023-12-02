@@ -1,7 +1,7 @@
 // Platform dependent (Windows OS).
 #include "Win32.h"
 
-IPC_PIPE::IPC_PIPE() {
+WIN_32::IPC_PIPE::IPC_PIPE() {
 	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
 	sa.bInheritHandle = TRUE;
 	sa.lpSecurityDescriptor = NULL;
@@ -43,7 +43,7 @@ IPC_PIPE::IPC_PIPE() {
 	CloseHandle(stdoutWrite);
 }
 
-void IPC_PIPE::write(std::string input) {
+void WIN_32::IPC_PIPE::write(std::string input) {
 	DWORD bytesWritten = 0;
 	if (!WriteFile(stdinWrite, input.c_str(), input.length(), &bytesWritten, NULL)) {
 		printf("Write Failed: %d\n", GetLastError());
@@ -52,7 +52,7 @@ void IPC_PIPE::write(std::string input) {
 	printf("Written:%s  Bytes Written:%d\n", input.c_str(), bytesWritten);
 }
 
-std::vector<std::string> IPC_PIPE::read() {
+std::vector<std::string> WIN_32::IPC_PIPE::read() {
 	DWORD bytesRead = 0;
 	char buffer[4096];
 	// Sleep(1000);
@@ -71,7 +71,7 @@ std::vector<std::string> IPC_PIPE::read() {
 	return response;
 }
 
-IPC_PIPE::~IPC_PIPE() {
+WIN_32::IPC_PIPE::~IPC_PIPE() {
 	CloseHandle(stdinWrite);
 	CloseHandle(stdoutRead);
 }

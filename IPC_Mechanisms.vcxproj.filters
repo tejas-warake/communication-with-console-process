@@ -32,5 +32,8 @@
     <ClInclude Include="Win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Boostlibs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
